@@ -31,7 +31,7 @@ class Empresa:
 
         company_name = self.nome.replace(' ', "_").lower()
         user_name = funcionario.nome_completo.replace(' ', "_").lower()
-        data = funcionario.__dict__
+        data = {**funcionario.__dict__}
         data["mes"] = datetime.now().strftime("%B")
         data.pop('empresa')
         data.pop('email')
@@ -49,5 +49,43 @@ class Empresa:
 
         return True
         
+    @staticmethod
+    def ler_holerite(empresa, funcionario):
+
+        company_name = empresa.nome.replace(' ', "_").lower()
+        user_name = funcionario.nome_completo.replace(' ', "_").lower()
+        
+        try:
+            dir = os.path.abspath(f"./empresas")
+            new_dir = os.path.join(dir, company_name, user_name)
+
+            with open(f"{new_dir}/{user_name}.json", "r") as json_file:
+                data = json.load(json_file)
+        except:
+            return "Holerite não gerado!"
+
+        return data
+
+    def demissao(self, funcionario):
+        try:
+            
+            if funcionario.funcao == "Gerente":
+                if funcionario.empresa == self.nome:
+                    for value in self.contratados:
+                        if value['cpf'] == funcionario.cpf:
+                            self.contratados.remove(value)
+                    return "Gerente demitido!"
+            else:
+                if funcionario.empresa == self.nome:
+                    for value in self.contratados:
+                            if value['cpf'] == funcionario.cpf:
+                                self.contratados.remove(value)
+                                func = {**value}
+                    
+
+                    return "Funcionário demitido!"
+        except:
+            return "Não consta esse CPF na empresa"
+
     def __len__(self):
         return len(self.contratados)

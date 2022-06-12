@@ -1,11 +1,7 @@
 {
   "nome_completo": "Jordan Cardoso Poole",
-  "cpf": [
-    "32112343215"
-  ],
-  "salario": [
-    3000
-  ],
-  "admissao": "08\/06\/2022",
+  "cpf": 32112343215,
+  "salario": 3000,
+  "admissao": "10\/06\/2022",
   "mes": "June"
 }

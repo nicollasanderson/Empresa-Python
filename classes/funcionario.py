@@ -7,8 +7,8 @@ class Funcionario():
 
     def __init__(self,nome_completo, cpf, salario = 3000):
         self.nome_completo = ' '.join(nome_completo.split()).title()
-        self.cpf = cpf,
-        self.salario = salario,
+        self.cpf = cpf
+        self.salario = salario
         self.admissao = datetime.now().strftime('%d/%m/%Y')
 
     def __str__(self):
