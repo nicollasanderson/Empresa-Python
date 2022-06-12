@@ -12,4 +12,4 @@ class Funcionario():
         self.admissao = datetime.now().strftime('%d/%m/%Y')
 
     def __str__(self):
-        return f"{self.nome_completo[0]} - {self.funcao}"
+        return f"<{self.nome_completo}: {self.funcao}>"

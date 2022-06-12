@@ -12,7 +12,6 @@ if __name__ == "__main__":
     empresa_1.contratar_funcionario(funcionario_1)
     empresa_1.contratar_funcionario(gerente_1)
     empresa_1.contratar_funcionario(gerente_3)
-    
     # Adicionando funcionário ao gerente
     gerente_1.adicionar_funcionario(funcionario_1)
     # Funcionário não contratado
@@ -21,7 +20,15 @@ if __name__ == "__main__":
     empresa_1.gerar_holerite(funcionario_1)
     holerite = Empresa.ler_holerite(empresa_1 ,funcionario_1)
     print(holerite)
-    
+    # {
+    #  'nome': 'Jordan Cardoso Poole', 
+    #  'cpf': 32112343215, 
+    #  'salario': 3000, 
+    #  'mes': 'May', 
+    #  'admissao': 
+    #  '27-05-2022'
+    # }
+
     print(len(empresa_1.contratados))
     # 3
     resposta = empresa_1.demissao(funcionario_4)

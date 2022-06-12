@@ -1,7 +1,10 @@
 # Desenvolva a classe de Empresa aqui
+from xxlimited import new
 import ujson as json
 import os
 from datetime import datetime
+
+from classes.gerente import Gerente
 
 class Empresa:
     def __init__(self,nome: str,cnpj: str):
@@ -80,12 +83,27 @@ class Empresa:
                     for value in self.contratados:
                             if value['cpf'] == funcionario.cpf:
                                 self.contratados.remove(value)
-                                func = {**value}
-                    
+
+                    for value2 in self.contratados:
+                        if value2['funcionarios']:
+                            for contratado in value2['funcionarios']:
+                                if contratado['cpf'] == funcionario.cpf:
+                                    value2['funcionarios'].remove(contratado)
 
                     return "Funcionário demitido!"
         except:
             return "Não consta esse CPF na empresa"
 
+    def promocao(self,funcionario):
+        for value in self.contratados:
+            if value['cpf'] == funcionario.cpf and "funcionarios" not in value:
+                
+                new_gerente = Gerente(funcionario.nome_completo,funcionario.cpf)
+                self.contratados.remove(value)
+                self.contratados.append(new_gerente.__dict__)
+                return new_gerente
+
+        return False
+        
     def __len__(self):
         return len(self.contratados)
